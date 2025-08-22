@@ -1,8 +1,35 @@
+// Initialize scores
 let humanScore = 0;
 let computerScore = 0;
 
-playGame();
+// DOM Elements
+let midSection = document.querySelector(".mid-section");
 
+
+// DOM Event Listeners
+midSection.addEventListener('click', (event) => {
+    let target = event.target;
+
+    switch(target.id) {
+        case 'rock-btn':
+            // What happens when rock button is clicked
+            humanChoice = 'Rock';
+            console.log('rock button pressed');
+            break;
+        case 'paper-btn':
+            // What happens when paper button is clicked
+            humanChoice = 'Paper';
+            console.log('paper button pressed');
+            break;
+        case 'scissors-btn':
+            // What happens when scissors button is pressed
+            humanChoice = 'Scissors';
+            console.log('scissors button pressed');
+            break;
+    }
+});
+
+// Helper Functions
 function getComputerChoice() {
     let num = Math.floor(3 * Math.random());
     switch (num) {
@@ -18,10 +45,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    return prompt("Rock, paper, or scissors?");
-}
-
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.slice(0,1).toUpperCase() + humanChoice.slice(1).toLowerCase();
     if ((humanChoice === "Rock" && computerChoice === "Scissors") || (humanChoice === "Paper" && computerChoice === "Rock") || (humanChoice === "Scissors" && computerChoice === "Paper")) {
@@ -35,8 +58,8 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
+// This function may need to go
 function playGame() {
-    console.log("Welcome to Rock Paper Scissors!");
 
     humanScore = 0;
     computerScore = 0;
@@ -47,7 +70,6 @@ function playGame() {
         humanChoice = getHumanChoice();
         computerChoice = getComputerChoice();
         playRound(humanChoice, computerChoice);
-        console.log("Current scores:\nHuman: " + humanScore + "\nComputer: " + computerScore);
     }
 
     console.log("The game is over!\nFinal scores:\nHuman: " + humanScore + "\nComputer: " + computerScore);
