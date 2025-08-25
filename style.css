@@ -1,0 +1,98 @@
+html, body {
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    background-color: #e6d2fa;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    background-color: rgb(23, 179, 241);
+    color: white;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 32px;
+}
+
+ul button {
+    width: 90px;
+    height: 90px;
+    background-size: contain;
+    background-color: bisque;
+    border: none;
+    border-radius: 9px;
+}
+
+ul button:hover {
+    transform: scale(1.1);
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+#rock-btn {
+    background-image: url(img/rock-svgrepo-com.svg);
+}
+
+#paper-btn {
+    background-image: url(img/paper-plane-svgrepo-com.svg);
+}
+
+#scissors-btn {
+    background-image: url(img/scissors-svgrepo-com.svg);
+}
+
+.score-and-choice {
+    display: flex;
+    justify-content: space-between;
+    width: 480px;
+    height: 280px;
+    background-color: rgb(248, 172, 118);
+    border-radius: 18px;
+}
+
+.message-and-button {
+    flex-grow: 1;
+    width: 360px;
+    height: 180px;
+}
+
+.footer img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer img:hover {
+    transform: rotate(360deg) scale(1.2);
+}
