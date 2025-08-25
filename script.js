@@ -6,6 +6,10 @@ let computerScore = 0;
 const midSection = document.querySelector(".mid-section");
 const messageAndButton = document.querySelector("#message-and-button");
 const scoreAndChoice = document.querySelector(".score-and-choice");
+const youScore = document.querySelector("#you-score");
+const compScore = document.querySelector("#comp-score");
+const weaponsList = document.querySelector('#weapons-list');
+midSection.appendChild(weaponsList);
 const youChose = document.createElement("div");
 youChose.setAttribute("id", "you-chose");
 const youChoseBtn = document.createElement("button");
@@ -20,27 +24,36 @@ midSection.addEventListener('click', (event) => {
         case 'rock-btn':
             // What happens when rock button is clicked
             humanChoice = 'Rock';
-            console.log('rock button pressed');
             displayYouChose(humanChoice, youChose, youChoseBtn);
             break;
         case 'paper-btn':
             // What happens when paper button is clicked
             humanChoice = 'Paper';
-            console.log('paper button pressed');
             displayYouChose(humanChoice, youChose, youChoseBtn);
             break;
         case 'scissors-btn':
             // What happens when scissors button is pressed
             humanChoice = 'Scissors';
-            console.log('scissors button pressed');
             displayYouChose(humanChoice, youChose, youChoseBtn);
             break;
     }
 });
 
 scoreAndChoice.addEventListener('click', (event) => {
-    console.log('THIS one worked');
-    playRound();
+    let target = event.target;
+    buttonText = target.textContent;
+
+    switch(buttonText) {
+        case 'Who will win?':
+            playRound();
+            break;
+        case 'Next Round':
+            midSection.appendChild(weaponsList);
+            target.textContent = "Who will win?";
+            break;
+        case 'Play Again?':
+            console.log('play again works')
+    }
 })
 
 
@@ -74,14 +87,16 @@ function playRound() {
     humanChoice = youChose.textContent.slice(10,-1);
     computerChoice = getComputerChoice();
     if ((humanChoice === "Rock" && computerChoice === "Scissors") || (humanChoice === "Paper" && computerChoice === "Rock") || (humanChoice === "Scissors" && computerChoice === "Paper")) {
-        console.log("You win this round! " + humanChoice + " beats " + computerChoice + ".");
+        youChose.textContent = `You win this round! ${humanChoice} beats ${computerChoice}.`;
         humanScore++;
+        youScore.textContent = `Your score: ${humanScore}`;
     } else if ((humanChoice === "Rock" && computerChoice === "Paper") || (humanChoice === "Paper" && computerChoice === "Scissors") || (humanChoice === "Scissors" && computerChoice === "Rock")) {
-        console.log("You lose this round! " + computerChoice + " beats " + humanChoice + ".");
+        youChose.textContent = `You lose this round! ${computerChoice} beats ${humanChoice}`;
         computerScore++;
+        compScore.textContent = `Computer's score: ${computerScore}`;
     } else {
-        console.log("It's a tie! Both chose " + humanChoice + ". No score.")
+        youChose.textContent = `It's a tie! No one scores.`
     }
-    messageAndButton.removeChild(youChose);
-    messageAndButton.removeChild(youChoseBtn);
+    youChoseBtn.textContent = "Next Round";
+    midSection.removeChild(weaponsList);
 }
