@@ -30,7 +30,7 @@ midSection.addEventListener('click', (event) => {
             console.log('scissors button pressed');
             displayYouChose(humanChoice);
             break;
-        case 'youChoseButton':
+        case 'you-chose-button':
             console.log('The button was pressed.');
     }
 });
@@ -52,16 +52,21 @@ function getComputerChoice() {
 }
 
 function displayYouChose(choice) {
-    const youChose = document.createElement("div");
-    youChose.classList.add('you-chose');
-    youChose.textContent = `You chose ${choice}!`;
+    const youChose = document.getElementById('you-chose');
+    if (youChose) {
+        youChose.textContent = `You chose ${choice}!`;
+    } else{
+        const youChose = document.createElement("div");
+        youChose.setAttribute("id", "you-chose");
+        youChose.textContent = `You chose ${choice}!`;
 
-    const youChoseBtn = document.createElement("button");
-    youChoseBtn.setAttribute("id", "youChoseButton");
-    youChoseBtn.textContent = "Who will win?";
+        const youChoseBtn = document.createElement("button");
+        youChoseBtn.setAttribute("id", "you-chose-button");
+        youChoseBtn.textContent = "Who will win?";
 
-    messageAndButton.appendChild(youChose);
-    messageAndButton.appendChild(youChoseBtn);
+        messageAndButton.appendChild(youChose);
+        messageAndButton.appendChild(youChoseBtn);
+    }
 }
 
 function playRound(humanChoice, computerChoice) {
