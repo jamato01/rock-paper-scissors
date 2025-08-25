@@ -3,7 +3,6 @@ let humanScore = 0;
 let computerScore = 0;
 
 // DOM Elements
-const container = document.querySelector('.container');
 const midSection = document.querySelector(".mid-section");
 const messageAndButton = document.querySelector("#message-and-button");
 const scoreAndChoice = document.querySelector(".score-and-choice");
@@ -12,7 +11,7 @@ const compScore = document.querySelector("#comp-score");
 const weaponsList = document.querySelector('#weapons-list');
 const weaponHeader = document.querySelector('#weapon-header');
 midSection.appendChild(weaponsList);
-container.prepend(weaponHeader);
+midSection.prepend(weaponHeader);
 const youChose = document.createElement("div");
 youChose.setAttribute("id", "you-chose");
 const youChoseBtn = document.createElement("button");
@@ -109,14 +108,14 @@ function playRound() {
     } else {
         youChoseBtn.textContent = "Next Round";
         midSection.removeChild(weaponsList);
-        container.removeChild(weaponHeader);
+        midSection.removeChild(weaponHeader);
     } 
 }
 
 function initializeRound() {
     messageAndButton.removeChild(youChose);
     midSection.appendChild(weaponsList);
-    container.prepend(weaponHeader);
+    midSection.prepend(weaponHeader);
     messageAndButton.removeChild(youChoseBtn);
 }
 
@@ -128,5 +127,5 @@ function endGame() {
     }
     youChoseBtn.textContent = "Play Again?";
     midSection.removeChild(weaponsList);
-    container.removeChild(weaponHeader);
+    midSection.removeChild(weaponHeader);
 }
