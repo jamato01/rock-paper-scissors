@@ -40,6 +40,7 @@ midSection.addEventListener('click', (event) => {
 
 scoreAndChoice.addEventListener('click', (event) => {
     console.log('THIS one worked');
+    playRound();
 })
 
 
@@ -69,8 +70,9 @@ function displayYouChose(choice, youChose, youChoseBtn) {
         messageAndButton.appendChild(youChoseBtn);
 }
 
-function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.slice(0,1).toUpperCase() + humanChoice.slice(1).toLowerCase();
+function playRound() {
+    humanChoice = youChose.textContent.slice(10,-1);
+    computerChoice = getComputerChoice();
     if ((humanChoice === "Rock" && computerChoice === "Scissors") || (humanChoice === "Paper" && computerChoice === "Rock") || (humanChoice === "Scissors" && computerChoice === "Paper")) {
         console.log("You win this round! " + humanChoice + " beats " + computerChoice + ".");
         humanScore++;
@@ -80,29 +82,6 @@ function playRound(humanChoice, computerChoice) {
     } else {
         console.log("It's a tie! Both chose " + humanChoice + ". No score.")
     }
-}
-
-// This function may need to go
-function playGame() {
-
-    humanScore = 0;
-    computerScore = 0;
-    let humanChoice;
-    let computerChoice;
-
-    for (let i = 1; i <= 5; i++) {
-        humanChoice = getHumanChoice();
-        computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
-
-    console.log("The game is over!\nFinal scores:\nHuman: " + humanScore + "\nComputer: " + computerScore);
-    
-    if (humanScore > computerScore) {
-        console.log("You win!");
-    } else if (humanScore < computerScore) {
-        console.log("You lose!")
-    } else {
-        console.log("It's a tie!")
-    }
+    messageAndButton.removeChild(youChose);
+    messageAndButton.removeChild(youChoseBtn);
 }
