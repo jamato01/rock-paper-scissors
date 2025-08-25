@@ -3,13 +3,16 @@ let humanScore = 0;
 let computerScore = 0;
 
 // DOM Elements
+const container = document.querySelector('.container');
 const midSection = document.querySelector(".mid-section");
 const messageAndButton = document.querySelector("#message-and-button");
 const scoreAndChoice = document.querySelector(".score-and-choice");
 const youScore = document.querySelector("#you-score");
 const compScore = document.querySelector("#comp-score");
 const weaponsList = document.querySelector('#weapons-list');
+const weaponHeader = document.querySelector('#weapon-header');
 midSection.appendChild(weaponsList);
+container.prepend(weaponHeader);
 const youChose = document.createElement("div");
 youChose.setAttribute("id", "you-chose");
 const youChoseBtn = document.createElement("button");
@@ -49,6 +52,7 @@ scoreAndChoice.addEventListener('click', (event) => {
             break;
         case 'Next Round':
             midSection.appendChild(weaponsList);
+            container.prepend(weaponHeader);
             target.textContent = "Who will win?";
             break;
         case 'Play Again?':
@@ -99,4 +103,5 @@ function playRound() {
     }
     youChoseBtn.textContent = "Next Round";
     midSection.removeChild(weaponsList);
+    container.removeChild(weaponHeader);
 }
