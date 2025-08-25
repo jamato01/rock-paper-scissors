@@ -5,6 +5,11 @@ let computerScore = 0;
 // DOM Elements
 const midSection = document.querySelector(".mid-section");
 const messageAndButton = document.querySelector("#message-and-button");
+const scoreAndChoice = document.querySelector(".score-and-choice");
+const youChose = document.createElement("div");
+youChose.setAttribute("id", "you-chose");
+const youChoseBtn = document.createElement("button");
+youChoseBtn.setAttribute("id", "you-chose-button");
 
 
 // DOM Event Listeners
@@ -16,24 +21,28 @@ midSection.addEventListener('click', (event) => {
             // What happens when rock button is clicked
             humanChoice = 'Rock';
             console.log('rock button pressed');
-            displayYouChose(humanChoice);
+            displayYouChose(humanChoice, youChose, youChoseBtn);
             break;
         case 'paper-btn':
             // What happens when paper button is clicked
             humanChoice = 'Paper';
             console.log('paper button pressed');
-            displayYouChose(humanChoice);
+            displayYouChose(humanChoice, youChose, youChoseBtn);
             break;
         case 'scissors-btn':
             // What happens when scissors button is pressed
             humanChoice = 'Scissors';
             console.log('scissors button pressed');
-            displayYouChose(humanChoice);
+            displayYouChose(humanChoice, youChose, youChoseBtn);
             break;
-        case 'you-chose-button':
-            console.log('The button was pressed.');
     }
 });
+
+scoreAndChoice.addEventListener('click', (event) => {
+    console.log('THIS one worked');
+})
+
+
 
 // Helper Functions
 function getComputerChoice() {
@@ -51,22 +60,13 @@ function getComputerChoice() {
     }
 }
 
-function displayYouChose(choice) {
-    const youChose = document.getElementById('you-chose');
-    if (youChose) {
-        youChose.textContent = `You chose ${choice}!`;
-    } else{
-        const youChose = document.createElement("div");
-        youChose.setAttribute("id", "you-chose");
-        youChose.textContent = `You chose ${choice}!`;
+function displayYouChose(choice, youChose, youChoseBtn) {
 
-        const youChoseBtn = document.createElement("button");
-        youChoseBtn.setAttribute("id", "you-chose-button");
+        youChose.textContent = `You chose ${choice}!`;
         youChoseBtn.textContent = "Who will win?";
 
         messageAndButton.appendChild(youChose);
         messageAndButton.appendChild(youChoseBtn);
-    }
 }
 
 function playRound(humanChoice, computerChoice) {
