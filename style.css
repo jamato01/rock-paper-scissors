@@ -12,6 +12,7 @@ body {
 }
 
 .title {
+    font-size: 48px;
     display: flex;
     justify-content: center;
 }
@@ -49,7 +50,7 @@ ul button {
     border-radius: 9px;
 }
 
-ul button:hover {
+button:hover {
     transform: scale(1.1);
 }
 
@@ -72,11 +73,15 @@ li {
     background-image: url(img/scissors-svgrepo-com.svg);
 }
 
+.mid-section {
+    flex-basis: 200px;
+}
+
 .score-and-choice {
-    flex: 0 1 auto;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; 
     align-items: center;
+    text-align: center;
     width: 480px;
     height: 280px;
     background-color: rgb(23, 179, 241);
@@ -86,14 +91,20 @@ li {
 
 .you-score,
 .comp-score {
-    max-width: 100px;
-    text-wrap: pretty;
+    text-wrap: auto;
+    color: white;
 }
 
-.message-and-button {
-    flex-grow: 1;
-    width: 360px;
-    height: 180px;
+#you-chose {
+    font-size: 24px;
+}
+
+#you-chose-button {
+    background-color: bisque;
+    border: 4px solid rgb(253, 174, 78);
+    border-radius: 9px;
+    padding: 8px;
+    margin-top: 16px;
 }
 
 .footer img {
