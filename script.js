@@ -51,12 +51,14 @@ scoreAndChoice.addEventListener('click', (event) => {
             playRound();
             break;
         case 'Next Round':
-            midSection.appendChild(weaponsList);
-            container.prepend(weaponHeader);
-            target.textContent = "Who will win?";
+            initializeRound();
             break;
         case 'Play Again?':
-            console.log('play again works')
+            humanScore = 0;
+            computerScore = 0;
+            compScore.textContent = `Computer's score: ${computerScore}`;
+            youScore.textContent = `Your score: ${humanScore}`;
+            initializeRound();
     }
 })
 
@@ -101,7 +103,30 @@ function playRound() {
     } else {
         youChose.textContent = `It's a tie! No one scores.`
     }
-    youChoseBtn.textContent = "Next Round";
+
+    if (humanScore === 5 || computerScore === 5) {
+        endGame();
+    } else {
+        youChoseBtn.textContent = "Next Round";
+        midSection.removeChild(weaponsList);
+        container.removeChild(weaponHeader);
+    } 
+}
+
+function initializeRound() {
+    messageAndButton.removeChild(youChose);
+    midSection.appendChild(weaponsList);
+    container.prepend(weaponHeader);
+    messageAndButton.removeChild(youChoseBtn);
+}
+
+function endGame() {
+    if (humanScore > computerScore) {
+        youChose.textContent = "You win the game!";
+    } else {
+        youChose.textContent = "You lose the game!";
+    }
+    youChoseBtn.textContent = "Play Again?";
     midSection.removeChild(weaponsList);
     container.removeChild(weaponHeader);
 }
