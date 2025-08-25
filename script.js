@@ -3,7 +3,8 @@ let humanScore = 0;
 let computerScore = 0;
 
 // DOM Elements
-let midSection = document.querySelector(".mid-section");
+const midSection = document.querySelector(".mid-section");
+const messageAndButton = document.querySelector("#message-and-button");
 
 
 // DOM Event Listeners
@@ -15,17 +16,22 @@ midSection.addEventListener('click', (event) => {
             // What happens when rock button is clicked
             humanChoice = 'Rock';
             console.log('rock button pressed');
+            displayYouChose(humanChoice);
             break;
         case 'paper-btn':
             // What happens when paper button is clicked
             humanChoice = 'Paper';
             console.log('paper button pressed');
+            displayYouChose(humanChoice);
             break;
         case 'scissors-btn':
             // What happens when scissors button is pressed
             humanChoice = 'Scissors';
             console.log('scissors button pressed');
+            displayYouChose(humanChoice);
             break;
+        case 'youChoseButton':
+            console.log('The button was pressed.');
     }
 });
 
@@ -43,6 +49,19 @@ function getComputerChoice() {
             return "Scissors"
             break;
     }
+}
+
+function displayYouChose(choice) {
+    const youChose = document.createElement("div");
+    youChose.classList.add('you-chose');
+    youChose.textContent = `You chose ${choice}!`;
+
+    const youChoseBtn = document.createElement("button");
+    youChoseBtn.setAttribute("id", "youChoseButton");
+    youChoseBtn.textContent = "Who will win?";
+
+    messageAndButton.appendChild(youChose);
+    messageAndButton.appendChild(youChoseBtn);
 }
 
 function playRound(humanChoice, computerChoice) {
